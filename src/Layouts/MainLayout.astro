@@ -1,0 +1,44 @@
+---
+import NavBar from '../components/NavBar';
+import SideBarItem from '../components/SideBarItem'
+import { Icon } from 'astro-icon';
+
+interface Props {
+    title: string;
+    sideBarItems: {
+        label: string;
+        href: string;
+        iconName: string;
+    }[];
+}
+
+const { title, sideBarItems } = Astro.props as Props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="bg-neutral-900">
+        <NavBar>
+            <Icon name="mdi:settings" size={45} class="text-blue-600 transition hover:opacity-75 cursor-pointer" />
+        </NavBar>
+        <div class="flex flex-row min-h-screen">
+            <aside class="hidden md:flex flex-col w-56 my-2 ml-2 space-y-2">
+                {sideBarItems.map(item => (
+                    <SideBarItem {...item}>
+                        <Icon name={item.iconName} size={45} class="text-neutral-300" />
+                    </SideBarItem>
+                ))}
+                <div class="flex flex-col flex-1 bg-neutral-800 rounded-md" />
+            </aside>
+            <main class="flex-1 min-h-full m-2">
+                <slot />
+            </main>
+        </div>
+	</body>
+</html>
