@@ -1,15 +1,25 @@
 ---
+import MainLayout from '../Layouts/MainLayout.astro'
+import { Image } from '@astrojs/image/components'
+
+const sideBarItems = [
+	{
+		label: 'Home',
+		href: '/',
+		iconName: 'mdi:house'
+	},
+	{
+		label: 'About',
+		href: '/about',
+		iconName: 'mdi:user'
+	},
+]
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="about" sideBarItems={sideBarItems}>
+    <div class="bg-neutral-800 rounded-md flex flex-col h-full items-center pt-6">
+		<h2 class="text-blue-600 font-bold text-5xl">Home Page</h2>
+		<p class="text-white font-lg max-w-xl mt-6">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+		<Image src="/cover.jpg" alt="Cover Image" width={600} height={300} fit='cover' class="mt-12"/>
+	</div>
+</MainLayout>
